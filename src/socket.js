@@ -7,9 +7,7 @@ const AppConfig = {
     PORT: ":3001"
 }
 
-const Singleton = (function () {
-    let instance;
-
+const ConnectWebsocket = (function () {
     function createInstance() {
         const socket = new WebSocket(AppConfig.PROTOCOL + AppConfig.HOST + AppConfig.PORT);
         return socket;
@@ -17,12 +15,9 @@ const Singleton = (function () {
 
     return {
         getInstance: function () {
-            if (!instance) {
-                instance = createInstance();
-            }
-            return instance;
+            return createInstance();
         }
     };
 })();
 
-export default Singleton;
+export default ConnectWebsocket;
