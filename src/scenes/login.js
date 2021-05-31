@@ -6,8 +6,13 @@ export default class Login extends Phaser.Scene {
     }
     
     init(data) {
+      let self = this;
       console.log('Login init', data);
       this.socket = data.socket;
+      this.socket.onclose = function (event) {
+          console.log("Connection closed");
+          self.scene.start("Connect");
+      }
     }
 
     preload() {

@@ -1,4 +1,4 @@
-import Singleton from '../socket'
+import ConnectWebsocket from '../socket'
 
 export default class Login extends Phaser.Scene {
     constructor() {
@@ -15,7 +15,7 @@ export default class Login extends Phaser.Scene {
         let self = this;
     
         this.dealText = this.add.text(75, 350, ['Connecting to server ...']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff').setInteractive();
-        console.log("connecting to server2");
+        console.log("Connecting to server");
         this.socket = ConnectWebsocket.getInstance();
         this.socket.onopen = function (event) {
           console.log('connected to server');
@@ -26,7 +26,7 @@ export default class Login extends Phaser.Scene {
         }
         this.socket.onclose = function (event) {
           console.log("Connection closed");
-          self.scene.restart();
+          self.scene.start("Connect");
         }
         
     }
